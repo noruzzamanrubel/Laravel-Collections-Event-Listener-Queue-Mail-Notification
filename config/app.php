@@ -165,7 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        Illuminate\Notifications\NotificationServiceProvider::class,
         /*
          * Application Service Providers...
          */

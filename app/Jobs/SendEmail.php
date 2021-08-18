@@ -10,20 +10,20 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
 
-class StripeJob implements ShouldQueue {
+class SendEmail implements ShouldQueue {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
      * @var mixed
      */
-
+    protected $details;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(  ) {
-        
+    public function __construct( $details ) {
+        $this->details = $details;
     }
 
     /**
@@ -32,6 +32,6 @@ class StripeJob implements ShouldQueue {
      * @return void
      */
     public function handle() {
-        Mail::to()->send( new EmailForQueuing() );
+        Mail::to( $this->details['email'] )->send( new EmailForQueuing() );
     }
 }

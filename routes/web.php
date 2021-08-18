@@ -1,10 +1,12 @@
 <?php
 
 use App\Events\SomeOneCheckedProfile;
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\StripeController;
 use App\Jobs\ProcessPayment;
 use App\Jobs\SendWelcomeEmail;
 use App\Models\User;
+use App\Notifications\OrderShippingNotification;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,6 +32,10 @@ Route::get( '/', function () {
 Route::get( '/stripe', [StripeController::class, 'stripe'] );
 Route::post( '/stripe', [StripeController::class, 'stripePost'] )->name( 'stripe.post' );
 
+
+Route::get( '/test-email', [JobController::class, 'enqueue']);
+
+
 Route::get( '/profilecheck', function () {
 
     $user = User::inRandomOrder()->first();
@@ -37,4 +43,11 @@ Route::get( '/profilecheck', function () {
     SomeOneCheckedProfile::dispatch( $user );
 
     echo $user->name . ' Your Profile Checked';
+} );
+
+Route::get( '/notify', function () {
+
+    $user = User::inRandomOrder()->first();
+
+    $user->notify(new OrderShippingNotification);
 } );

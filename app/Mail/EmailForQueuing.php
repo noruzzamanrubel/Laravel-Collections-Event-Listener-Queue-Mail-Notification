@@ -3,10 +3,12 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class StripepaymentMail extends Mailable {
+class EmailForQueuing extends Mailable
+{
     use Queueable, SerializesModels;
 
     /**
@@ -14,7 +16,8 @@ class StripepaymentMail extends Mailable {
      *
      * @return void
      */
-    public function __construct() {
+    public function __construct()
+    {
         //
     }
 
@@ -23,9 +26,10 @@ class StripepaymentMail extends Mailable {
      *
      * @return $this
      */
-    public function build() {
-        return $this->from( 'mail@example.com', 'Mailtrap' )
-            ->subject( 'Test Queued Email stripe' )
-            ->view( 'emails.email' );
+    public function build()
+    {
+        return $this->from('mail@example.com', 'Mailtrap')
+            ->subject('Test Queued Email')
+            ->view('emails.email');
     }
 }

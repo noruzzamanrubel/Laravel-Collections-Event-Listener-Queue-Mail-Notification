@@ -2,28 +2,25 @@
 
 namespace App\Jobs;
 
-use App\Mail\EmailForQueuing;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Mail;
 
-class StripeJob implements ShouldQueue {
+class OrderShippingJob implements ShouldQueue
+{
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
-    /**
-     * @var mixed
-     */
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(  ) {
-        
+    public function __construct()
+    {
+        //
     }
 
     /**
@@ -31,7 +28,8 @@ class StripeJob implements ShouldQueue {
      *
      * @return void
      */
-    public function handle() {
-        Mail::to()->send( new EmailForQueuing() );
+    public function handle()
+    {
+        //
     }
 }
