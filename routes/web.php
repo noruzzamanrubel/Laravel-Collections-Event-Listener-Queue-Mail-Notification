@@ -7,6 +7,7 @@ use App\Jobs\ProcessPayment;
 use App\Jobs\SendWelcomeEmail;
 use App\Models\User;
 use App\Notifications\OrderShippingNotification;
+use App\Notifications\ProfileCheckNotification;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,5 +50,8 @@ Route::get( '/notify', function () {
 
     $user = User::inRandomOrder()->first();
 
-    $user->notify(new OrderShippingNotification);
+    //$user->notify(new OrderShippingNotification);
+    $user->notify(new ProfileCheckNotification);
+    
+    echo $user->name . ' Your Profile Checked';
 } );
