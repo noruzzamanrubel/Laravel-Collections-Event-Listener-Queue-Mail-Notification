@@ -6,7 +6,6 @@ use App\Http\Controllers\StripeController;
 use App\Jobs\ProcessPayment;
 use App\Jobs\SendWelcomeEmail;
 use App\Models\User;
-use App\Notifications\OrderShippingNotification;
 use App\Notifications\ProfileCheckNotification;
 use Illuminate\Support\Facades\Route;
 
@@ -26,16 +25,14 @@ Route::get( '/', function () {
     SendWelcomeEmail::dispatch();
 
     ProcessPayment::dispatch();
-    
+
     return view( 'welcome' );
 } );
 
 Route::get( '/stripe', [StripeController::class, 'stripe'] );
 Route::post( '/stripe', [StripeController::class, 'stripePost'] )->name( 'stripe.post' );
 
-
-Route::get( '/test-email', [JobController::class, 'enqueue']);
-
+Route::get( '/test-email', [JobController::class, 'enqueue'] );
 
 Route::get( '/profilecheck', function () {
 
@@ -51,7 +48,19 @@ Route::get( '/notify', function () {
     $user = User::inRandomOrder()->first();
 
     //$user->notify(new OrderShippingNotification);
-    $user->notify(new ProfileCheckNotification);
-    
+    $user->notify( new ProfileCheckNotification );
+
     echo $user->name . ' Your Profile Checked';
+} );
+
+Route::get( '/users', function () {
+
+    //$user = User::pluck( 'name' );
+    //$user = User::where( 'name', 'Lea Treutel' )->value('email');
+    // $user = User::where( 'name', 'Marcellus Fahey' )->value( 'email' );
+
+    $user= User::find(1);
+
+    dd( $user );
+
 } );
