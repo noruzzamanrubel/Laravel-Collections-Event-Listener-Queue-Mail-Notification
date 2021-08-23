@@ -56,7 +56,9 @@ Route::get( '/notify', function () {
 Route::get( '/users', function () {
 
     //$user = User::pluck( 'name' );
+    
     //$user = User::where( 'name', 'Lea Treutel' )->value('email');
+
     // $user = User::where( 'name', 'Marcellus Fahey' )->value( 'email' );
 
     $user= User::find(1);
