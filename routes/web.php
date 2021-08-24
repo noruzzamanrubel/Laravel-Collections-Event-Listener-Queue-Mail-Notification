@@ -56,13 +56,68 @@ Route::get( '/notify', function () {
 Route::get( '/users', function () {
 
     //$user = User::pluck( 'name' );
-    
+
     //$user = User::where( 'name', 'Lea Treutel' )->value('email');
 
     // $user = User::where( 'name', 'Marcellus Fahey' )->value( 'email' );
 
-    $user= User::find(1);
+    $user = User::pluck( 'name' );
 
     dd( $user );
 
+} );
+
+Route::get( '/collection', function () {
+    $collection = collect( [1, 1, 2, 3, 3, 3, 4, 5, 5, 6, 7, 8, 9, 10] );
+    // dd( $collection->all() );
+    // dd( $collection->count() );
+    // dd( $collection->countBy() );
+    // dd( $collection->sum() );
+    //  dd( $collection->sum() / $collection->count() );
+    //  dd( $collection->avg());
+    //  dd( $collection->chunk(4));
+    //  dd( $collection->dump());
+    //  dd( $collection->duplicates());
+    //  dd( $collection->shuffle());
+    //  dd( $collection->min());
+    //  dd( $collection->max());
+    //  dd( $collection->mode());
+    //  dd( $collection->median());
+    //  dd( $collection->first());
+     dd( $collection->all());
+
+    //  dd( $collection->last());
+    // $collection = collect([
+    //     ['product' => 'Desk', 'price' => 200],
+    //     ['product' => 'Chair', 'price' => 100],
+    //     ['product' => 'Bookcase', 'price' => 150],
+    //     ['product' => 'Door', 'price' => 100],
+    // ]);
+
+    // $filtered = $collection->where('price', 100);
+    // return $filtered;
+
+    // $collection = collect( [
+    //     ['product' => 'Desk', 'price' => 200],
+    //     ['product' => 'Chair', 'price' => 80],
+    //     ['product' => 'Bookcase', 'price' => 150],
+    //     ['product' => 'Pencil', 'price' => 30],
+    //     ['product' => 'Door', 'price' => 100],
+    // ] );
+
+    // $filtered = $collection->whereBetween( 'price', [100, 200] );
+
+    // $filtered->all();
+
+    // $collection = collect([
+    //     ['product' => 'Desk', 'price' => 200],
+    //     ['product' => 'Chair', 'price' => 100],
+    //     ['product' => 'Bookcase', 'price' => 150],
+    //     ['product' => 'Door', 'price' => 100],
+    // ]);
+    
+    // $filtered = $collection->whereIn('price', [100]);
+    
+    // $filtered->all();
+    // return $filtered;
 } );
