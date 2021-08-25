@@ -3,6 +3,7 @@
 use App\Events\SomeOneCheckedProfile;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\StripeController;
+use App\Http\Controllers\StudentController;
 use App\Jobs\ProcessPayment;
 use App\Jobs\SendWelcomeEmail;
 use App\Models\User;
@@ -121,3 +122,5 @@ Route::get( '/collection', function () {
     // $filtered->all();
     // return $filtered;
 } );
+
+Route::resource('students', StudentController::class);
